@@ -7,37 +7,13 @@ const DuplicateError = require('../errors/DuplicateError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-// const getUsers = (req, res, next) => {
-//   User.find({})
-//     .then((users) => {
-//       res.send({ data: users });
-//     })
-//     .catch(next);
-// };
-
-// const getUserById = (req, res, next) => {
-//   User.findById(req.params._id)
-//     .then((user) => {
-//       if (user) {
-//         return res.send({ data: user });
-//       }
-//       return next(new NotFoundError('пользователь с указанным _id не найден'));
-//     })
-//     .catch((err) => {
-//       if (err.name === 'CastError') {
-//         return next(new ValidationError('переданны некорректные данные id при запросе пользователя'));
-//       }
-//       return next(err);
-//     });
-// };
-
 const createUser = ((req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
-      name, about, avatar, email, password: hash,
+      name, avatar, email, password: hash,
     })
       .then((user) => {
         res.send({
@@ -109,8 +85,6 @@ const getInfoCurrentUser = (req, res, next) => {
 };
 
 module.exports = {
-  // getUsers,
-  // getUserById,
   createUser,
   updateProfile,
   // updateAvatar,

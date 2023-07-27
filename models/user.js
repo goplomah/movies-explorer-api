@@ -25,6 +25,13 @@ const userSchema = new mongoose.Schema(
       default: 'Пользователь',
       required: true,
     },
+    // avatar: {
+    //   type: String,
+    //   default: 'сюда впихнуть ссылку на дефолтное изображение аватара из макета',
+    //   validate: {
+    //     validator: (v) => validator.isURL(v),
+    //   },
+    // },
   },
   { versionKey: false },
 );
