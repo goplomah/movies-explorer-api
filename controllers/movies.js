@@ -12,12 +12,37 @@ const getMovies = (req, res, next) => {
 
 const createMovie = (req, res, next) => {
   const owner = req.user._id;
-  const { country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId } = req.body;
-  Movie.create({ country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId, owner })
+  const {
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailer,
+    nameRU,
+    nameEN,
+    thumbnail,
+    movieId,
+  } = req.body;
+  Movie.create({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailer,
+    nameRU,
+    nameEN,
+    thumbnail,
+    movieId,
+    owner,
+  })
     .then((movie) => {
       movie
         .populate('owner')
-        .then(() => res.status(201).send(card));
+        .then(() => res.status(201).send(movie));
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -30,7 +55,7 @@ const createMovie = (req, res, next) => {
 const deleteMovie = (req, res, next) => {
   const movieById = req.params._id;
   const userById = req.user._id;
-  Card.findById(movieById)
+  Movie.findById(movieById)
     .then((movie) => {
       if (!movie) {
         return next(new NotFoundError('карточка с указанным id не найдена'));

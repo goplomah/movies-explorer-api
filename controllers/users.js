@@ -79,7 +79,7 @@ const getInfoCurrentUser = (req, res, next) => {
         return next(new NotFoundError('пользователь не найден'));
       }
       const { email, name } = user;
-      return res.send({ email, name});
+      return res.send({ email, name });
     })
     .catch(next);
 };

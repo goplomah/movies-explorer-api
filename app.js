@@ -15,7 +15,7 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() => {
-    console.log('connected to bitfilmsdb');
+    // console.log('connected to bitfilmsdb');
   });
 
 const app = express();
@@ -34,5 +34,5 @@ app.use(errors());
 app.use(handlerCentralError);
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+  // console.log(`App listening on port ${PORT}`);
 });
