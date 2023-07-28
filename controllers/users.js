@@ -9,15 +9,24 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 const createUser = ((req, res, next) => {
   const {
-    name, about, avatar, email, password,
+    name,
+    // avatar,
+    email,
+    password,
   } = req.body;
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
-      name, avatar, email, password: hash,
+      name,
+      // avatar,
+      email,
+      password: hash,
     })
       .then((user) => {
         res.send({
-          _id: user._id, name, about, avatar, email,
+          _id: user._id,
+          name,
+          // avatar,
+          email,
         });
       }))
     .catch((err) => {
