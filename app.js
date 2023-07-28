@@ -8,10 +8,10 @@ const routes = require('./routes/index');
 const handlerCentralError = require('./middlewares/handlerCentralError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, MONGO_DB = 'mongodb://127.0.0.1:27017/bitfilmsdb ' } = process.env;
 
 mongoose
-  .connect('mongodb://127.0.0.1:27017/bitfilmsdb ', {
+  .connect(MONGO_DB, {
     useNewUrlParser: true,
   })
   .then(() => {
