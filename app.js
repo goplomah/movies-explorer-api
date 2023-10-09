@@ -8,14 +8,18 @@ const routes = require('./routes/index');
 const handlerCentralError = require('./middlewares/handlerCentralError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000, MONGO_DB = 'mongodb://127.0.0.1:27017/bitfilmsdb ' } = process.env;
+const {
+  PORT = 3000,
+  MONGO_DB = 'mongodb://127.0.0.1:27017/bitfilmsdb '
+} = process.env;
+// const MONGO_DB = 'mongodb://127.0.0.1:27017/bitfilmsdb ';
 
 mongoose
   .connect(MONGO_DB, {
     useNewUrlParser: true,
   })
   .then(() => {
-    // console.log('connected to bitfilmsdb');
+    console.log('connected to bitfilmsdb');
   });
 
 const app = express();
@@ -34,5 +38,5 @@ app.use(errors());
 app.use(handlerCentralError);
 
 app.listen(PORT, () => {
-  // console.log(`App listening on port ${PORT}`);
+  console.log(`App listening on port ${PORT}`);
 });
