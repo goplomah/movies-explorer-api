@@ -16,7 +16,7 @@ const {
 
 mongoose
   .connect(MONGO_DB, {
-    // useNewUrlParser: true,
+    useNewUrlParser: true,
   })
   .then(() => {
     console.log('connected to bitfilmsdb');
