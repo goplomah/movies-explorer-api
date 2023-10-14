@@ -4,9 +4,12 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 
 const getMovies = (req, res, next) => {
-  Movie.find({ owner: req.user._id })
-    // .populate(['owner', 'req.user._id'])
-    .then((movies) => { res.send(movies); })
+  Movie
+    .find({})
+    .then((movies) => res.send(movies))
+  // Movie.find({ owner: req.user._id })
+  //   // .populate(['owner', 'req.user._id'])
+  //   .then((movies) => { res.send(movies); })
     .catch(next);
 };
 
@@ -19,7 +22,7 @@ const createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -32,7 +35,7 @@ const createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,

@@ -6,14 +6,10 @@ const movieSchema = new mongoose.Schema(
   {
     country: {
       type: String,
-      minlength: [2, 'минимальная длина поля "country" - 2'],
-      maxlength: [30, 'максимальная длина поля "country" - 30'],
       required: true,
     },
     director: {
       type: String,
-      minlength: [2, 'минимальная длина поля "director" - 2'],
-      maxlength: [30, 'максимальная длина поля "director" - 30'],
       required: true,
     },
     duration: {
@@ -26,8 +22,6 @@ const movieSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      minlength: [2, 'минимальная длина поля "description" - 2'],
-      maxlength: [200, 'максимальная длина поля "description" - 200'],
       required: true,
     },
     image: {

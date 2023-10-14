@@ -10,14 +10,12 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const createUser = ((req, res, next) => {
   const {
     name,
-    // avatar,
     email,
     password,
   } = req.body;
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
       name,
-      // avatar,
       email,
       password: hash,
     })
@@ -25,7 +23,6 @@ const createUser = ((req, res, next) => {
         res.send({
           _id: user._id,
           name,
-          // avatar,
           email,
         });
       }))
@@ -55,21 +52,6 @@ const updateProfile = (req, res, next) => {
     });
 };
 
-// const updateAvatar = (req, res, next) => {
-//   const userById = req.user._id;
-//   const { avatar } = req.body;
-//   User.findByIdAndUpdate(userById, { avatar }, { new: true, runValidators: true })
-//     .then((user) => {
-//       res.send(user);
-//     })
-//     .catch((err) => {
-//       if (err.name === 'ValidationError') {
-//         return next(new ValidationError('переданы некорректные данные при обновлении аватара'));
-//       }
-//       return next(err);
-//     });
-// };
-
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -87,8 +69,7 @@ const getInfoCurrentUser = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('пользователь не найден'));
       }
-      const { email, name } = user;
-      return res.send({ email, name });
+      res.send(user);
     })
     .catch(next);
 };
@@ -96,7 +77,6 @@ const getInfoCurrentUser = (req, res, next) => {
 module.exports = {
   createUser,
   updateProfile,
-  // updateAvatar,
   login,
   getInfoCurrentUser,
 };
